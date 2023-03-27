@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="seoul_location">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">서울명소</h2>
+                    <h3 class="section-subheading text-muted">같이가요 서울명소!</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4" th:each="vo:${list}">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                <img class="img-fluid" th:src="${vo.poster}"/>
+                            </a>
+                            <div class="portfolio-caption text-center">
+                                <div class="portfolio-caption-heading mt-2" th:text="${vo.title}" style="font-weight: bold"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- 서울자연 -->
+        <section class="page-section" id="seoul_nature">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">서울자연</h2>
+                    <h3 class="section-subheading text-muted">같이가요 서울자연!</h3>
+                </div>
+                <ul class="timeline">
+                    <li th:each="vo:${list2}">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" th:src="${vo.poster}"/></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 th:text="${vo.title}"></h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted" th:text="${vo.address}"></p></div>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </section>
+        <!-- About-->
+        <section class="page-section" id="seoul_hotel">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">서울쇼핑</h2>
+                    <h3 class="section-subheading text-muted">같이가요 서울쇼핑!</h3>
+                </div>
+                <ul class="timeline">
+                    <li th:each="vo:${list3}" class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid" th:src="${vo.poster}"/></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 th:text="${vo.title}"></h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted" th:text="${vo.address}"></p></div>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </section>
+        <!-- Team-->
+        
+        <!-- Clients-->
+        
+        <!-- Contact-->
+        
+</body>
+</html>

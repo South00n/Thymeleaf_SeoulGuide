@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+  	margin: 0 2px;
+}
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #999999;
+    border-radius: 5px 5px 5px 5px;
+    color: #ffffff;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+.page_a:hover {
+    background-color: #ffc800;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #ffc800;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+    
+.li_active {
+	background-color: #ffc800;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
+</style>
+</head>
+<body>
+
+  		<section class="page-section bg-light" id="seoul_location" style="padding-bottom: 30px">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">서울명소</h2>
+                    <h3 class="section-subheading text-muted">같이가요 서울명소!</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 mb-4" th:each="vo:${list}">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a th:href="@{/seoul/seoul_location_detail(no=${vo.no})}" class="portfolio-link">
+                                <img class="img-fluid" th:src="${vo.poster}"/>
+                            </a>
+                            <div class="portfolio-caption text-center">
+                                <div class="portfolio-caption-heading mt-2" th:text="${vo.title}" style="font-weight: bold"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+         </section>
+        <ul id="page_ul text-center" style="padding-left: 0px; display: flex; justify-content: center;">
+          <li class="page_li" th:if="${startPage>1}"><a class="mypost_page_pre page_a" th:href="@{/seoul/seoul_location(page=${startPage-1})}">◀</a></li>
+          <li th:class="${curpage==i}?'page_li mypost_page page_a li_active':'page_li mypost_page page_a'" th:each="i:${#numbers.sequence(startPage,endPage)}"><a style="color:white; text-decoration: none;" th:href="@{/seoul/seoul_location(page=${i})}" th:text="${i}"></a></li>
+          <li class="page_li" th:if="${endPage<totalpage}"><a class="mypost_page_next page_a" th:href="@{/seoul/seoul_location(page=${endPage+1})}">▶</a></li>
+        </ul>
+
+</body>
+</html>

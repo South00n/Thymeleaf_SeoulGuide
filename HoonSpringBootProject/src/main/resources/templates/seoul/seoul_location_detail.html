@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.origin {
+	overflow:hidden;
+	white-space : nowrap;
+	text-overflow: ellipsis;
+}
+</style>
+</head>
+<body>
+	<section class="page-section bg-light" id="seoul_location">
+        <div class="container text-center" style="width:700px;">
+		<table class="table text-center" style="table-layout: fixed;">
+   	      <tr class="text-center">
+   	      	<td>
+    		<img th:src="${vo.poster}" style="margin-bottom: 40px">
+    		</td>
+   	      </tr>
+   	      <tr>
+   	        <th>이름</th>
+   	      </tr>
+   	      <tr>
+   	        <td class="origin" th:text="${vo.title}"></td>
+   	      </tr>
+   	      <tr style="vertical-align: middle;">
+   	        <th>주소</th>
+   	      </tr>
+   	      <tr>
+   	        <td class="origin" th:text="${vo.address}"></td>
+   	      </tr>
+   	      <tr>
+   	        <th>내용</th>
+   	      </tr>
+   	      <tr>
+   	        <td th:text="${vo.msg}"></td>
+   	      </tr>
+   	  </table>
+   	  </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#page_ul {
+	list-style: none;
+	display: block;
+	text-align: center;
+	margin-top: 35px;
+}
+.page_li {
+  	display: inline-block;
+  	margin: 0 2px;
+}
+.page_a {
+    transition: all 100ms ease-in-out 0s;
+    background-color: #999999;
+    border-radius: 5px 5px 5px 5px;
+    color: #ffffff;
+    display: block;
+    font: 12px/30px Arial, sans-serif;
+    height: 30px;
+    margin: 0px;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    width: 30px;
+}
+.page_a:hover {
+    background-color: #ffc800;
+    color: #FFFFFF;
+}
+.page_li.active page_a {
+    background-color: #ffc800;
+    color: #FFFFFF;
+}
+.page_li.active page_a:hover {
+    color: #FFFFFF;
+}
+    
+.li_active {
+	background-color: #ffc800;
+	color: #FFFFFF;
+	border-radius: 5px 5px 5px 5px;
+	z-index: 2;
+}
+</style>
+</head>
+<body>
+<section class="page-section bg-light" id="seoul_location" style="padding-bottom: 30px">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">서울맛집</h2>
+                    <h3 class="section-subheading text-muted">검색해요 서울맛집!</h3>
+                </div>
+                <form method="post" action="/food/food_find" class="inline text-center" style="margin-bottom: 20px">
+	              <input type=text name=address size=30 class="input-sm" placeholder="지역을 검색해주세요">
+	              <input type=submit value="검색" class="btn btn-sm btn-primary">
+	            </form>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 mb-4" th:each="vo,i:${list}">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a th:href="@{/food/find_detail(fno=${vo.fno})}" class="portfolio-link">
+                                <img class="img-fluid" th:src="${vo.poster}" th:title="${vo.name}"/>
+                            </a>
+                            <div class="portfolio-caption text-center">
+                                <div class="portfolio-caption-heading mt-2" th:text="${vo.name}" style="font-weight: bold"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+         </section>
+        <ul id="page_ul text-center" style="padding-left: 0px; display: flex; justify-content: center;">
+          <li class="page_li" th:if="${startPage>1}"><a class="mypost_page_pre page_a" th:href="@{/food/food_find(page=${startPage-1},address=${address})}">◀</a></li>
+          <li th:class="${curpage==i}?'page_li mypost_page page_a li_active':'page_li mypost_page page_a'" th:each="i:${#numbers.sequence(startPage,endPage)}"><a style="color:white; text-decoration: none;" th:href="@{/food/food_find(page=${i},address=${address})}" th:text="${i}"></a></li>
+          <li class="page_li" th:if="${endPage<totalpage}"><a class="mypost_page_next page_a" th:href="@{/food/food_find(page=${endPage+1},address=${address})}">▶</a></li>
+        </ul>
+        
+</body>
+</html>
